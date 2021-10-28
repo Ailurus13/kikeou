@@ -1,19 +1,16 @@
 package fr.enssat.kikeou.couturier_morizur.database.repository
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
 
-class ContactRepository(val contactDao: ContactDAO) {
+class ContactRepository(private val contactDao: ContactDAO) {
 
-    @WorkerThread
-    suspend fun getById(id: String): LiveData<Contact> {
-        return contactDao.get(id)
+    fun getAllContactListInfo(): LiveData<List<ContactDAO.ContactListInfo>> {
+        return contactDao.getAllContactListInfo()
     }
 
-    @WorkerThread
-    suspend fun save(contact: Contact) {
-        contactDao.save(contact)
+    fun getById(id: String): LiveData<Contact> {
+        return contactDao.get(id)
     }
 }

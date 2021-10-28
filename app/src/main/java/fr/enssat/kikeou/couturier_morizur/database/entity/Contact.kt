@@ -9,6 +9,7 @@ data class Contact(
     var id: String,
     var firstname: String,
     var lastname: String,
-    var email: String,
-    var tel: String,
+
+    var email: String?,
+    var tel: String?,
 )

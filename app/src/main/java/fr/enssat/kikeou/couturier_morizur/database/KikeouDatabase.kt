@@ -19,7 +19,7 @@ abstract class KikeouDatabase: RoomDatabase() {
     abstract  val contactDAO: ContactDAO
 
     companion object {
-        const val DATABASE_NAME = "kikeou_database"
+        private const val DATABASE_NAME = "kikeou_database"
 
         @Volatile
         private var INSTANCE: KikeouDatabase? = null

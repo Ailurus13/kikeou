@@ -2,15 +2,25 @@ package fr.enssat.kikeou.couturier_morizur
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.viewModels
 
 class MainActivity : AppCompatActivity() {
+
+    private val wordViewModel: KikeouViewModel by viewModels {
+        KikeouViewModelFactory((application as KikeouApplication).contactRepository)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val kikeouApp = application as KikeouApplication
+        wordViewModel.contact.observe(this, {
+            Log.e("Aloha Testing", it.firstname + " " + it.lastname)
+        })
 
-        // TODO: Regarder fonctionnement coroutine + vérifier bon fonctionnement db
-        // kikeouApp.contactRepository.getById("1")
+        wordViewModel.contactsListInfo.observe(this, {
+            Log.e("Aloha Testing", it.size.toString())
+        })
     }
 }
