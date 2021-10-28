@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Kikeou</string>
+    <string name="app_name">Kikéou</string>
+    <string name="firstname">Prénom</string>
+    <string name="lastname">Nom</string>
+    <string name="welcome">Bienvenue sur Kikéou</string>
+    <string name="start">Commencer</string>
 </resources>
