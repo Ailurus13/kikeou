@@ -11,6 +11,6 @@ class MainActivity : AppCompatActivity() {
         val kikeouApp = application as KikeouApplication
 
         // TODO: Regarder fonctionnement coroutine + vérifier bon fonctionnement db
-        kikeouApp.contactRepository.getById("1")
+        // kikeouApp.contactRepository.getById("1")
     }
 }
