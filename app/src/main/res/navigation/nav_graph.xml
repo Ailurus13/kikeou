@@ -7,7 +7,17 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="fr.enssat.kikeou.couturier_morizur.WelcomeFragment"
+        android:name="fr.enssat.kikeou.couturier_morizur.screens.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_mainContactFragment"
+            app:destination="@id/mainContactFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainContactFragment"
+        android:name="fr.enssat.kikeou.couturier_morizur.screens.maincontact.MainContactFragment"
+        android:label="fragment_main_contact"
+        tools:layout="@layout/fragment_main_contact" />
 </navigation>

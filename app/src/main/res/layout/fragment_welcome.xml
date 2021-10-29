@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".WelcomeFragment">
+    tools:context=".screens.welcome.WelcomeFragment">
 
     <TextView
         android:id="@+id/welcomeText"
@@ -35,6 +35,7 @@
         <EditText
             android:id="@+id/firstnameEditText"
             android:maxLines="1"
+            android:inputType="text"
             android:layout_marginBottom="20dp"
             android:hint="@string/firstname"
             android:layout_width="match_parent"
@@ -44,6 +45,7 @@
         <EditText
             android:id="@+id/lastnameEditText"
             android:maxLines="1"
+            android:inputType="text"
             android:hint="@string/lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

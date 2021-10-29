@@ -52,8 +52,8 @@ abstract class KikeouDatabase: RoomDatabase() {
         }
 
         suspend fun populateDatabase(contactDao: ContactDAO) {
-            var contact = Contact("1", "Tristan", "COUTURIER" , "tristan.couturier1998@gmail.com", "+33615552581")
-            contactDao.save(contact)
+            var contact = Contact("Tristan", "COUTURIER" , "tristan.couturier1998@gmail.com", "+33615552581")
+            contactDao.create(contact)
         }
     }
 }

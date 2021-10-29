@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -50,8 +51,8 @@ dependencies {
     testImplementation 'junit:junit:4.+'
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Kotlin components
