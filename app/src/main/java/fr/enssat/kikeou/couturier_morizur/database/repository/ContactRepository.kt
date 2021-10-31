@@ -12,11 +12,15 @@ class ContactRepository(private val contactDao: ContactDAO) {
         contactDao.create(mainContact)
     }
 
-    fun getAllContactListInfo(): LiveData<List<ContactDAO.ContactListInfo>> {
-        return contactDao.getAllContactListInfo()
+    fun getById(id: String): LiveData<Contact> {
+        return contactDao.getById(id)
     }
 
-    fun getById(id: String): LiveData<Contact> {
-        return contactDao.get(id)
+    fun getMainContact(): LiveData<Contact> {
+        return contactDao.getMainContact()
+    }
+
+    fun getAllContactListInfo(): LiveData<List<ContactDAO.ContactListInfo>> {
+        return contactDao.getAllContactListInfo()
     }
 }
