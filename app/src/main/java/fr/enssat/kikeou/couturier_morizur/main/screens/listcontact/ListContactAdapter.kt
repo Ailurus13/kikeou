@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>()
     var data = listOf<ContactDAO.ContactListInfo>()
 
     override fun getItemCount() = data.size
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
