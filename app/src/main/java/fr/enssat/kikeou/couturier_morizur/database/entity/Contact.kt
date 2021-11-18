@@ -13,6 +13,7 @@ data class Contact(
     var tel: String?,
     var isMainContact: Boolean
     ) {
-    constructor(firstname: String, lastname: String): this(0, firstname, lastname, null, null, false)
+
     constructor(firstname: String, lastname: String, email:String, tel:String): this(0, firstname, lastname, email, tel, false)
+    constructor(firstname: String, lastname: String): this(0, firstname, lastname, null, null, false)
 }

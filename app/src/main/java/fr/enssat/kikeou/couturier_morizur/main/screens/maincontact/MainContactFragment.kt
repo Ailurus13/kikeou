@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import fr.enssat.kikeou.couturier_morizur.*
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
 import fr.enssat.kikeou.couturier_morizur.welcome.WelcomeActivityContract
@@ -16,7 +18,7 @@ class MainContactFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mainContactViewModel: MainContactViewModel by viewModels {
-        KikeouViewModelFactory((activity?.application as KikeouApplication).contactRepository)
+        KikeouViewModelFactory(activity?.application as KikeouApplication)
     }
 
     private val startForResult = registerForActivityResult(WelcomeActivityContract()) {
@@ -39,9 +41,14 @@ class MainContactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.buttonAddLocation.setOnClickListener {
+            findNavController().navigate(MainContactFragmentDirections.actionMainContactFragmentToAddLocationFragment())
+        }
+
         mainContactViewModel.mainContact.observe(viewLifecycleOwner, {
             it?.let {
-                binding.mainContactName.text = "Bonjour " + it.firstname + " ! "
+                binding.firstnameEditText.setText(it.firstname)
+                binding.lastnameEditText.setText(it.lastname)
             } ?: run {
                 mainContactViewModel.startWelcomeActivity()
             }
