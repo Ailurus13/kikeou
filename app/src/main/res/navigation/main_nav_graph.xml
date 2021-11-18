@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainContactFragment">
-
+    <fragment
+        android:id="@+id/listContactFragment"
+        android:name="fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactFragment"
+        android:label="ListContactFragment"
+        tools:layout="@layout/fragment_list_contact"/>
     <fragment
         android:id="@+id/mainContactFragment"
         android:name="fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactFragment"
         android:label="fragment_main_contact"
         tools:layout="@layout/fragment_main_contact" />
-    <fragment
-        android:id="@+id/listContactFragment"
-        android:name="fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactFragment"
-        android:label="ListContactFragment" />
 </navigation>

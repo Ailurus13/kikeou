@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_top_contact_card">20dp</dimen>
+    <dimen name="text_size_contact">25sp</dimen>
+    <dimen name="padding_contact_content">16dp</dimen>
+</resources>
