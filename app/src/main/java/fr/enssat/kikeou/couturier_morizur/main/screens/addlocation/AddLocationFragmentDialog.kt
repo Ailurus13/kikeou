@@ -1,18 +1,20 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.addlocation
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
 import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentAddLocationBinding
 
-class AddLocationFragment : Fragment() {
+class AddLocationFragmentDialog : DialogFragment() {
     private var _binding: FragmentAddLocationBinding? = null
     private val binding get() = _binding!!
 
@@ -27,9 +29,16 @@ class AddLocationFragment : Fragment() {
         _binding = FragmentAddLocationBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set size of dialog
+        val width = (resources.displayMetrics.widthPixels * 0.90).toInt()
+        val height = (resources.displayMetrics.heightPixels * 0.90).toInt()
+        dialog?.window?.setLayout(width, height)
+
+        // Init fields
         binding.weekNumberPicker.minValue = 1;
         binding.weekNumberPicker.maxValue = 53;
 
@@ -46,13 +55,18 @@ class AddLocationFragment : Fragment() {
             binding.addLocationTitle.text = "Add location to " + it.firstname
         })
 
+        // On click to add location
         binding.buttonAddLocation.setOnClickListener{
-            // TODO: Get day number from spinner
-            var day = 0
+            var day = binding.daySpinner.selectedItem.toString()
             var week = binding.weekNumberPicker.value
             var value = binding.description.text.toString()
-            addLocationViewModel.addLocation(week, day, value)
-            // TODO: Exit
+            addLocationViewModel.addLocation(day, week, value)
+            // Close dialog
+            dismiss()
         }
+    }
+
+    companion object {
+        const val TAG = "AddLocationFragmentDialog"
     }
 }

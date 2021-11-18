@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".main.screens.addlocation.AddLocationFragment">
+    tools:context=".main.screens.addlocation.AddLocationFragmentDialog">
 
     <TextView
         android:id="@+id/addLocationTitle"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add location"
@@ -23,24 +24,15 @@
         app:layout_constraintTop_toBottomOf="@id/addLocationTitle"
         app:layout_constraintBottom_toTopOf="@id/buttonAddLocation"
         >
-
-        <LinearLayout
+        <NumberPicker
+            android:id="@+id/weekNumberPicker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content" />
 
-            <NumberPicker
-                android:id="@+id/weekNumberPicker"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-            <Spinner
-                android:id="@+id/daySpinner"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/daySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/description"
@@ -50,12 +42,12 @@
 
     <Button
         android:id="@+id/buttonAddLocation"
-        android:text="Done"
+        android:layout_marginEnd="48dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/locationLinearLayout"
+        android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationLinearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

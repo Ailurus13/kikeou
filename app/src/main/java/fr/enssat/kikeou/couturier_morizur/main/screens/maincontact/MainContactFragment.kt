@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import fr.enssat.kikeou.couturier_morizur.*
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
+import fr.enssat.kikeou.couturier_morizur.main.screens.addlocation.AddLocationFragmentDialog
 import fr.enssat.kikeou.couturier_morizur.welcome.WelcomeActivityContract
 
 class MainContactFragment : Fragment() {
@@ -42,7 +43,9 @@ class MainContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonAddLocation.setOnClickListener {
-            findNavController().navigate(MainContactFragmentDirections.actionMainContactFragmentToAddLocationFragment())
+            AddLocationFragmentDialog().show(
+                childFragmentManager, AddLocationFragmentDialog.TAG
+            )
         }
 
         mainContactViewModel.mainContact.observe(viewLifecycleOwner, {

@@ -13,10 +13,10 @@ import androidx.room.PrimaryKey
 data class Location(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    var day: Int,
+    var day: String,
     var week: Int,
     var value: String,
     var contactId: Long
 ) {
-    constructor(day: Int, week: Int, value:String, contactId:Long): this(0, day, week, value, contactId)
+    constructor(day: String, week: Int, value:String, contactId:Long): this(0, day, week, value, contactId)
 }

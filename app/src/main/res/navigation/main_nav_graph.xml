@@ -9,20 +9,10 @@
         android:id="@+id/mainContactFragment"
         android:name="fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactFragment"
         android:label="fragment_main_contact"
-        tools:layout="@layout/fragment_main_contact" >
-        <action
-            android:id="@+id/action_mainContactFragment_to_addLocationFragment"
-            app:destination="@id/addLocationFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_main_contact" />
 
     <fragment
         android:id="@+id/listContactFragment"
         android:name="fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactFragment"
         android:label="ListContactFragment" />
-
-    <fragment
-        android:id="@+id/addLocationFragment"
-        android:name="fr.enssat.kikeou.couturier_morizur.main.screens.addlocation.AddLocationFragment"
-        android:label="fragment_add_location"
-        tools:layout="@layout/fragment_add_location" />
 </navigation>
