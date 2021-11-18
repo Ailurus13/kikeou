@@ -9,7 +9,7 @@ class ListContactViewModel(private val contactRepository: ContactRepository): Vi
 
     init {
         Log.i("enodebug", "GameViewModel created!")
-        Log.i("enodebug", "${listContact.value}")
+        Log.i("enodebug", "Liste contact model view: ${listContact.value}")
     }
 
 }
