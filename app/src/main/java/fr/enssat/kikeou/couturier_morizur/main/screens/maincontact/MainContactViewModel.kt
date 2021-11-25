@@ -5,10 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
+import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
 
-class MainContactViewModel(private val contactRepository: ContactRepository): ViewModel() {
+class MainContactViewModel(private val contactRepository: ContactRepository, private val locationRepository: LocationRepository): ViewModel() {
     val mainContact = contactRepository.getMainContact()
+    val locations = locationRepository.getMainLocations()
 
     val welcomeActivity: LiveData<Boolean>
         get() = _welcomeActivity

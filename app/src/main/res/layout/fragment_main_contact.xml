@@ -50,6 +50,13 @@
             android:layout_height="wrap_content"
             android:text="Your locations" />
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:id="@+id/locationRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
         <Button
             android:id="@+id/buttonAddLocation"
             android:text="Add location"

@@ -12,4 +12,7 @@ import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 interface LocationDAO {
     @Insert
     suspend fun create(location: Location): Long
+
+    @Query("SELECT * FROM location JOIN contact ON location.contactId = contact.id WHERE contact.isMainContact = 1")
+    fun getMainLocations(): LiveData<List<Location>>
 }
