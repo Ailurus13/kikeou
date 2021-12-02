@@ -7,16 +7,17 @@ import androidx.room.Room
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
+import fr.enssat.kikeou.couturier_morizur.database.dao.LocationDAO
 import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
-import fr.enssat.kikeou.couturier_morizur.database.entity.Week
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Contact::class, Location::class, Week::class], version=1, exportSchema = false)
+@Database(entities = [Contact::class, Location::class], version=1, exportSchema = false)
 abstract class KikeouDatabase: RoomDatabase() {
 
     abstract  val contactDAO: ContactDAO
+    abstract  val locationDAO: LocationDAO
 
     companion object {
         private const val DATABASE_NAME = "kikeou_database"

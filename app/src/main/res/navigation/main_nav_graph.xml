@@ -10,6 +10,7 @@
         android:name="fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactFragment"
         android:label="fragment_main_contact"
         tools:layout="@layout/fragment_main_contact" />
+
     <fragment
         android:id="@+id/listContactFragment"
         android:name="fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactFragment"
