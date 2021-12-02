@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "contact")
 data class Contact(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
+    @PrimaryKey
+    var id: String,
     var firstname: String,
     var lastname: String,
     var email: String?,
@@ -14,6 +14,5 @@ data class Contact(
     var isMainContact: Boolean
     ) {
 
-    constructor(firstname: String, lastname: String, email:String, tel:String): this(0, firstname, lastname, email, tel, false)
-    constructor(firstname: String, lastname: String): this(0, firstname, lastname, null, null, false)
+    constructor(id: String, firstname: String, lastname: String): this(id, firstname, lastname, null, null, false)
 }

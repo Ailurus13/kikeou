@@ -53,8 +53,7 @@ abstract class KikeouDatabase: RoomDatabase() {
         }
 
         suspend fun populateDatabase(contactDao: ContactDAO) {
-            var contact = Contact("admin", "admin" , "admin@kikeou.com", "+33612345678")
-            contactDao.create(contact)
+            // Function called to populate db during development
         }
     }
 }

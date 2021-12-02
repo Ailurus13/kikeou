@@ -10,7 +10,7 @@ import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
 @Dao
 interface ContactDAO {
     @Insert
-    suspend fun create(contact: Contact): Long
+    suspend fun create(contact: Contact)
 
     @Update
     suspend fun update(contact: Contact)

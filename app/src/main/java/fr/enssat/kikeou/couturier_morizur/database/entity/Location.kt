@@ -16,7 +16,7 @@ data class Location(
     var day: String,
     var week: Int,
     var value: String,
-    var contactId: Long
+    var contactId: String
 ) {
-    constructor(day: String, week: Int, value:String, contactId:Long): this(0, day, week, value, contactId)
+    constructor(day: String, week: Int, value:String, contactId:String): this(0, day, week, value, contactId)
 }

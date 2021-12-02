@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,9 +17,20 @@ class MainContactViewModel(private val contactRepository: ContactRepository, pri
         get() = _welcomeActivity
     private val _welcomeActivity = MutableLiveData<Boolean>(false)
 
-    fun createMainContact(firstname:String, lastname:String) {
+    fun createMainContact(id: String, firstname:String, lastname:String) {
         viewModelScope.launch {
-            contactRepository.createMainContact(firstname, lastname)
+            contactRepository.createMainContact(id, firstname, lastname)
+        }
+    }
+
+    fun updateMainContact(firstname: String, lastname: String) {
+        viewModelScope.launch {
+            var mainContactValue = mainContact.value
+            if(mainContactValue != null) {
+                mainContactValue.lastname = lastname
+                mainContactValue.firstname = firstname
+                contactRepository.update(mainContactValue)
+            }
         }
     }
 

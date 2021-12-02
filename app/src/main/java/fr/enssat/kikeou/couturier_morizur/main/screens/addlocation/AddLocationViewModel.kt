@@ -13,7 +13,6 @@ class AddLocationViewModel(private val locationRepository: LocationRepository, p
 
     fun addLocation(day: String, week: Int, value: String) {
         viewModelScope.launch {
-
             mainContact.value?.let {
                 locationRepository.createLocation(day, week, value, it.id)
             }

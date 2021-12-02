@@ -35,6 +35,25 @@
             android:hint="@string/lastname"
             android:inputType="text"
             android:maxLines="1"></EditText>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/updateButtons"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/cancelUpdate"
+                android:text="Annuler"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:id="@+id/saveUpdate"
+                android:text="Sauvegarder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
