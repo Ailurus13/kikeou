@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -14,8 +15,8 @@ import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.screens.addlocation.AddLocationFragmentDialog
 import fr.enssat.kikeou.couturier_morizur.welcome.WelcomeActivityContract
 import android.provider.Settings.Secure
-
-
+import fr.enssat.kikeou.couturier_morizur.qrcode.QrCodeActivity
+import net.glxn.qrgen.android.QRCode
 
 
 class MainContactFragment : Fragment() {
@@ -101,8 +102,18 @@ class MainContactFragment : Fragment() {
 
         // Save update button
         binding.saveUpdate.setOnClickListener {
-            Log.e("aloha", "Updating...")
             mainContactViewModel.updateMainContact(binding.firstnameEditText.text.toString(), binding.lastnameEditText.text.toString())
+        }
+
+        // Qr Code Button
+        binding.qrCodeButton.setOnClickListener{
+            val intent = Intent(context, QrCodeActivity::class.java)
+            val contact = mainContactViewModel.mainContact.value
+            if(contact != null) {
+                intent.putExtra("data", "dpeozkdpzeokdzepodkzepdkzodkzpeodkezopkdezp")
+                intent.putExtra("title", "${contact.firstname} ${contact.lastname}")
+            }
+            startActivity(intent)
         }
 
         // Start welcome activity if there is no main contact yet
