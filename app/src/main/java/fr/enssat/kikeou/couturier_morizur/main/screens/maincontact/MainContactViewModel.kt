@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,8 +9,7 @@ import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
 
 class MainContactViewModel(private val contactRepository: ContactRepository, private val locationRepository: LocationRepository): ViewModel() {
-    val mainContact = contactRepository.getMainContact()
-    val locations = locationRepository.getMainLocations()
+    val mainContact = contactRepository.getMainContactAndLocation()
 
     val welcomeActivity: LiveData<Boolean>
         get() = _welcomeActivity
@@ -27,9 +25,9 @@ class MainContactViewModel(private val contactRepository: ContactRepository, pri
         viewModelScope.launch {
             var mainContactValue = mainContact.value
             if(mainContactValue != null) {
-                mainContactValue.lastname = lastname
-                mainContactValue.firstname = firstname
-                contactRepository.update(mainContactValue)
+                mainContactValue.contact.lastname = lastname
+                mainContactValue.contact.firstname = firstname
+                contactRepository.update(mainContactValue.contact)
             }
         }
     }

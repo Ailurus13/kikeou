@@ -41,8 +41,12 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$app_compat_version"
     implementation "androidx.activity:activity-ktx:$activity_version"
 
-    // SDK
+    // QRCode
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi:1.12.0'
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.12.0"
 
     // Core
     implementation 'androidx.core:core-ktx:1.7.0'

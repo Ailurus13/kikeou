@@ -14,10 +14,15 @@ class QrCodeActivity : AppCompatActivity() {
         binding = ActivityQrCodeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set QR Code bitmap
         val data = intent.getStringExtra("data")
         val bitmap = QRCode.from(data).withSize(500,500).bitmap()
         binding.qrCodeImageView.setImageBitmap(bitmap)
 
+        // Set title
         binding.title.text = intent.getStringExtra("title")
+
+        // Set brightness
+        window.attributes.screenBrightness = 100/255f;
     }
 }
