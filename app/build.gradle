@@ -43,6 +43,7 @@ dependencies {
 
     // QRCode
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+    implementation 'com.google.mlkit:barcode-scanning:17.0.0'
 
     // Moshi
     implementation 'com.squareup.moshi:moshi:1.12.0'
