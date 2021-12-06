@@ -12,6 +12,11 @@ class ContactRepository(private val contactDao: ContactDAO) {
         contactDao.create(mainContact)
     }
 
+    suspend fun createContact(contact: Contact) {
+        contact.isMainContact = false
+        contactDao.create(contact)
+    }
+
     suspend fun update(contact: Contact) {
         contactDao.update(contact)
     }

@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,7 @@ class ListContactAdapter: RecyclerView.Adapter<ListContactAdapter.ViewHolder>() 
         companion object{
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.list_item_contact, parent, false)
+                val view = layoutInflater.inflate(R.layout.contact_list_item, parent, false)
                 return ViewHolder(view)
             }
         }

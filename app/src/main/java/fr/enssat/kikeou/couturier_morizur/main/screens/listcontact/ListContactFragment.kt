@@ -32,11 +32,17 @@ class ListContactFragment : Fragment() {
             val jsonAdapter: JsonAdapter<ContactDAO.ContactAndLocation> =
                 moshi.adapter(ContactDAO.ContactAndLocation::class.java)
             val contactAndLocation = jsonAdapter.fromJson(it)
-            Toast.makeText(
-                context,
-                "Contact ${contactAndLocation?.contact?.firstname} added",
-                Toast.LENGTH_LONG
-            ).show()
+
+            if (contactAndLocation != null) {
+                listContactViewModel.addContactAndLocation(contactAndLocation)
+                Toast.makeText(
+                    context,
+                    "Contact ${contactAndLocation?.contact?.firstname} added",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                throw Exception("No contact to add in room database")
+            }
         } catch (e: Exception) {
             Toast.makeText(context, "This QR Code is not valid", Toast.LENGTH_LONG).show()
         }

@@ -8,4 +8,8 @@ class LocationRepository(private val locationDAO: LocationDAO) {
         var location = Location(day, week, value, contactId)
         locationDAO.create(location)
     }
+
+    suspend fun createLocation(location: Location) {
+        locationDAO.create(location)
+    }
 }

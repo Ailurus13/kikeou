@@ -1,4 +1,4 @@
-package fr.enssat.kikeou.couturier_morizur.main
+package fr.enssat.kikeou.couturier_morizur
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView

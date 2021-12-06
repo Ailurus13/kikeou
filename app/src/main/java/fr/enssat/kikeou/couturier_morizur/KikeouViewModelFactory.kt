@@ -15,7 +15,7 @@ class KikeouViewModelFactory(private val app: KikeouApplication): ViewModelProvi
             return AddLocationViewModel(app.locationRepository, app.contactRepository) as T
         }
         if(modelClass.isAssignableFrom(ListContactViewModel::class.java)) {
-            return ListContactViewModel(app.contactRepository) as T
+            return ListContactViewModel(app.contactRepository, app.locationRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
