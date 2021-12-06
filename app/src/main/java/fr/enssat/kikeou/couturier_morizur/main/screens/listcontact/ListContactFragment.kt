@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
@@ -15,18 +16,9 @@ import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactViewModel
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import fr.enssat.kikeou.couturier_morizur.KikeouApplication
-import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
-import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.qrcode.ReadQrCodeContract
 
 class ListContactFragment : Fragment() {
@@ -77,7 +69,7 @@ class ListContactFragment : Fragment() {
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
-            Log.e("aloha", "List contact changed ${it.size}")
+            Log.e("aloha", "List contact changed ${it}")
             adapter.data = it
         })
 

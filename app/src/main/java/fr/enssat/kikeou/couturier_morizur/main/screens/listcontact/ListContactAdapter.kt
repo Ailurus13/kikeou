@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,10 +30,12 @@ class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>()
     class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView){
         val firstname: TextView = itemView.findViewById(R.id.contact_firstname)
         val lastname: TextView = itemView.findViewById(R.id.contact_lastname)
+        val contactLocation: TextView = itemView.findViewById(R.id.contact_location)
 
         fun bind(item: ContactDAO.ContactListInfo){
             firstname.text = item.firstname
             lastname.text = item.lastname
+            contactLocation.text = item.location
         }  
 
         companion object{
