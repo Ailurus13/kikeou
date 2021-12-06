@@ -1,4 +1,4 @@
-package fr.enssat.kikeou.couturier_morizur.welcome.screens
+package fr.enssat.kikeou.couturier_morizur.welcome
 
 import android.app.Activity
 import android.content.Intent

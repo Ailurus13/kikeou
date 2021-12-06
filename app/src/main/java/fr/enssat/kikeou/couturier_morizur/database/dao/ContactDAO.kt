@@ -23,10 +23,10 @@ interface ContactDAO {
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContact(): LiveData<Contact>
 
-    @Query("SELECT contact.firstname, contact.lastname FROM contact")
+    @Query("SELECT contact.id, contact.firstname, contact.lastname FROM contact")
     fun getAllContactListInfo(): LiveData<List<ContactListInfo>>
 
-    data class ContactListInfo(val firstname: String, val lastname: String)
+    data class ContactListInfo(val id: String, val firstname: String, val lastname: String)
 
     @JsonClass(generateAdapter = true)
     data class ContactAndLocation(

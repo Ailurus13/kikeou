@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="fr.enssat.kikeou.couturier_morizur.welcome.screens.WelcomeFragment"
+        android:name="fr.enssat.kikeou.couturier_morizur.welcome.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" />
 </navigation>
