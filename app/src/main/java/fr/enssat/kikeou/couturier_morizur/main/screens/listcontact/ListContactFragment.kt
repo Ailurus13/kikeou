@@ -41,7 +41,6 @@ class ListContactFragment : Fragment() {
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
             lca.data = it
-            Log.i("enodebug", "Liste contact frag: ${lca.data}")
         })
     }
 }

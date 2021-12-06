@@ -11,6 +11,10 @@ import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 
 class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
     var data = listOf<ContactDAO.ContactListInfo>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun getItemCount() = data.size
 
