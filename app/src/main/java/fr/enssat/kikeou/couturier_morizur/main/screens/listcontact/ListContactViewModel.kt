@@ -11,11 +11,22 @@ class ListContactViewModel(var contactRepository: ContactRepository, var locatio
     val listContact = contactRepository.getAllContactListInfo()
 
     fun addContactAndLocation(contactAndLocation: ContactDAO.ContactAndLocation) {
+        // Sync locations with contactAndLocation object
         viewModelScope.launch {
+            // Create contact if not exists
             contactRepository.createContact(contactAndLocation.contact)
 
-            // TODO: Create if not exists in room
-            // TODO: Delte in room if not exists in JSON
+            // Get actual locations of the contact if they exits
+            val locations = locationRepository.getLocationsByContact(contactAndLocation.contact.id)
+
+            // Delete all locations that are not in the contactAndLocation object
+            locations.forEach{
+                if(!contactAndLocation.locations.contains(it)) {
+                    locationRepository.deleteLocation(it)
+                }
+            }
+
+            // Create / Update all the remaining locations
             contactAndLocation.locations.forEach{
                 locationRepository.createLocation(it)
             }

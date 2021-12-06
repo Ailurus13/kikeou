@@ -32,7 +32,7 @@ class ContactRepository(private val contactDao: ContactDAO) {
         return contactDao.getAllContactListInfo()
     }
 
-    fun getById(userId: String): LiveData<Contact> {
+    fun getById(userId: String): LiveData<ContactDAO.ContactAndLocation> {
         return contactDao.getById(userId)
     }
 }

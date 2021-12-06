@@ -47,6 +47,7 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
                 throw Exception("No contact to add in room database")
             }
         } catch (e: Exception) {
+            Log.e("kikeou-error", e.stackTraceToString());
             Toast.makeText(context, "This QR Code is not valid", Toast.LENGTH_LONG).show()
         }
     }

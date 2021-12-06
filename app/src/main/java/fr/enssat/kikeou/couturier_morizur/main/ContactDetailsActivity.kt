@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
 import fr.enssat.kikeou.couturier_morizur.databinding.ActivityContactDetailsBinding
+import fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.ReadOnlyLocationAdapter
 
 class ContactDetailsActivity : AppCompatActivity() {
 
@@ -25,9 +26,13 @@ class ContactDetailsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        val adapter = ReadOnlyLocationAdapter(this)
+        binding.detailsLocationRecyclerView.adapter = adapter
+
         contactDetailsViewModel.contact.observe(this, {
-            binding.contactDetailsFirstname.text = it.firstname
-            binding.contactDetailsLastname.text = it.lastname
+            binding.contactDetailsFirstname.text = it.contact.firstname
+            binding.contactDetailsLastname.text = it.contact.lastname
+            adapter.data = it.locations
         })
     }
 }

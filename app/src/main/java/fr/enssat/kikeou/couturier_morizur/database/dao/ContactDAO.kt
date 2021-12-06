@@ -15,7 +15,7 @@ interface ContactDAO {
     suspend fun update(contact: Contact)
 
     @Query("SELECT * FROM contact WHERE id =:id")
-    fun getById(id:String): LiveData<Contact>
+    fun getById(id:String): LiveData<ContactAndLocation>
 
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContactAndLocation(): LiveData<ContactAndLocation>
