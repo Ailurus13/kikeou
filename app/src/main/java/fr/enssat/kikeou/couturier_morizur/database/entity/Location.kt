@@ -6,14 +6,17 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "location", foreignKeys = [
-    ForeignKey(entity = Week::class, parentColumns = ["id"], childColumns = ["weekdId"], onDelete = ForeignKey.CASCADE)
+    ForeignKey(entity = Contact::class, parentColumns = ["id"], childColumns = ["contactId"], onDelete = ForeignKey.CASCADE)
 ], indices = [
-    Index("weekdId")
+    Index("contactId")
 ])
 data class Location(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
-    var day: Int,
+    var day: String,
+    var week: Int,
     var value: String,
-    var weekdId: Long
-)
+    var contactId: String
+) {
+    constructor(day: String, week: Int, value:String, contactId:String): this(0, day, week, value, contactId)
+}
