@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.database.repository
 
-import androidx.lifecycle.LiveData
 import fr.enssat.kikeou.couturier_morizur.database.dao.LocationDAO
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
@@ -10,7 +9,11 @@ class LocationRepository(private val locationDAO: LocationDAO) {
         locationDAO.create(location)
     }
 
-    fun getMainLocations(): LiveData<List<Location>> {
-        return locationDAO.getMainLocations()
+    suspend fun createLocation(location: Location) {
+        locationDAO.create(location)
+    }
+
+    suspend fun deleteLocation(location: Location) {
+        locationDAO.delete(location)
     }
 }

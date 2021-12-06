@@ -1,8 +1,8 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +13,10 @@ import fr.enssat.kikeou.couturier_morizur.*
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.screens.addlocation.AddLocationFragmentDialog
 import fr.enssat.kikeou.couturier_morizur.welcome.WelcomeActivityContract
-import android.provider.Settings.Secure
-
-
+import fr.enssat.kikeou.couturier_morizur.qrcode.QrCodeActivity
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 
 
 class MainContactFragment : Fragment() {
@@ -49,14 +50,9 @@ class MainContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Location RecyclerView
-        val locationAdapter = LocationAdapter()
+        val locationAdapter = LocationAdapter(mainContactViewModel, context)
         val locationRecyclerView = binding.locationRecyclerView
         locationRecyclerView.adapter = locationAdapter
-
-        // On locations change
-        mainContactViewModel.locations.observe(viewLifecycleOwner, {
-            locationAdapter.data = it
-        })
 
         // Open add location modal on button click
         binding.buttonAddLocation.setOnClickListener {
@@ -68,8 +64,9 @@ class MainContactFragment : Fragment() {
         // On contact details update
         mainContactViewModel.mainContact.observe(viewLifecycleOwner, {
             it?.let {
-                binding.firstnameEditText.setText(it.firstname)
-                binding.lastnameEditText.setText(it.lastname)
+                binding.firstnameEditText.setText(it.contact.firstname)
+                binding.lastnameEditText.setText(it.contact.lastname)
+                locationAdapter.data = it.locations
             } ?: run {
                 mainContactViewModel.startWelcomeActivity()
             }
@@ -77,7 +74,7 @@ class MainContactFragment : Fragment() {
 
         // On firstname change
         binding.firstnameEditText.addTextChangedListener {
-            if(it.toString() != mainContactViewModel.mainContact.value?.firstname) {
+            if(it.toString() != mainContactViewModel.mainContact.value?.contact?.firstname) {
                 binding.updateButtons.visibility = View.VISIBLE
             } else {
                 binding.updateButtons.visibility = View.INVISIBLE
@@ -86,7 +83,7 @@ class MainContactFragment : Fragment() {
 
         // On lastname change
         binding.lastnameEditText.addTextChangedListener {
-            if(it.toString() != mainContactViewModel.mainContact.value?.lastname) {
+            if(it.toString() != mainContactViewModel.mainContact.value?.contact?.lastname) {
                 binding.updateButtons.visibility = View.VISIBLE
             } else {
                 binding.updateButtons.visibility = View.INVISIBLE
@@ -95,14 +92,32 @@ class MainContactFragment : Fragment() {
 
         // Cancel update button
         binding.cancelUpdate.setOnClickListener {
-            binding.firstnameEditText.setText(mainContactViewModel.mainContact.value?.firstname)
-            binding.lastnameEditText.setText(mainContactViewModel.mainContact.value?.lastname)
+            binding.firstnameEditText.setText(mainContactViewModel.mainContact.value?.contact?.firstname)
+            binding.lastnameEditText.setText(mainContactViewModel.mainContact.value?.contact?.lastname)
         }
 
         // Save update button
         binding.saveUpdate.setOnClickListener {
-            Log.e("aloha", "Updating...")
             mainContactViewModel.updateMainContact(binding.firstnameEditText.text.toString(), binding.lastnameEditText.text.toString())
+        }
+
+        // Qr Code Button
+        binding.qrCodeButton.setOnClickListener{
+            val intent = Intent(context, QrCodeActivity::class.java)
+            val mainContact = mainContactViewModel.mainContact.value
+
+            if(mainContact != null) {
+                // Create JSON
+                val moshi = Moshi.Builder().build()
+                val jsonAdapter: JsonAdapter<ContactDAO.ContactAndLocation> = moshi.adapter(ContactDAO.ContactAndLocation::class.java)
+                val json = jsonAdapter.toJson(mainContact)
+
+                // Set intent extra
+                intent.putExtra("data", json)
+                intent.putExtra("title", "${mainContact.contact.firstname} ${mainContact.contact.lastname}")
+
+                startActivity(intent)
+            }
         }
 
         // Start welcome activity if there is no main contact yet

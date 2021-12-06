@@ -1,15 +1,14 @@
 package fr.enssat.kikeou.couturier_morizur.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
 import androidx.lifecycle.LiveData
+import androidx.room.*
+import com.squareup.moshi.JsonClass
 import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
+import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
 @Dao
 interface ContactDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(contact: Contact)
 
     @Update
@@ -19,10 +18,22 @@ interface ContactDAO {
     fun getById(id:String): LiveData<Contact>
 
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
+    fun getMainContactAndLocation(): LiveData<ContactAndLocation>
+
+    @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContact(): LiveData<Contact>
 
     @Query("SELECT contact.firstname, contact.lastname FROM contact")
     fun getAllContactListInfo(): LiveData<List<ContactListInfo>>
 
     data class ContactListInfo(val firstname: String, val lastname: String)
+
+    @JsonClass(generateAdapter = true)
+    data class ContactAndLocation(
+        @Embedded
+        var contact: Contact,
+
+        @Relation(parentColumn =  "id", entityColumn = "contactId")
+        val locations: List<Location>
+    )
 }

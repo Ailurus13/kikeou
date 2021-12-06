@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
 import fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactViewModel
 import fr.enssat.kikeou.couturier_morizur.main.screens.addlocation.AddLocationViewModel
+import fr.enssat.kikeou.couturier_morizur.main.screens.listcontact.ListContactViewModel
 import fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactViewModel
 
 class KikeouViewModelFactory(private val app: KikeouApplication): ViewModelProvider.Factory {
@@ -16,7 +17,7 @@ class KikeouViewModelFactory(private val app: KikeouApplication): ViewModelProvi
             return AddLocationViewModel(app.locationRepository, app.contactRepository) as T
         }
         if(modelClass.isAssignableFrom(ListContactViewModel::class.java)) {
-            return ListContactViewModel(contactRepository) as T
+            return ListContactViewModel(app.contactRepository, app.locationRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

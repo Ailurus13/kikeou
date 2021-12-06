@@ -15,6 +15,19 @@ import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentMainContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.MainContactViewModel
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import fr.enssat.kikeou.couturier_morizur.KikeouApplication
+import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
+import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
+import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
+import fr.enssat.kikeou.couturier_morizur.qrcode.ReadQrCodeContract
 
 class ListContactFragment : Fragment() {
 
@@ -22,7 +35,30 @@ class ListContactFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val listContactViewModel: ListContactViewModel by viewModels {
-        KikeouViewModelFactory((activity?.application as KikeouApplication).contactRepository)
+        var app = (activity?.application as KikeouApplication)
+        KikeouViewModelFactory(app)
+    }
+
+    private val startForResult = registerForActivityResult(ReadQrCodeContract()) {
+        try {
+            val moshi = Moshi.Builder().build()
+            val jsonAdapter: JsonAdapter<ContactDAO.ContactAndLocation> =
+                moshi.adapter(ContactDAO.ContactAndLocation::class.java)
+            val contactAndLocation = jsonAdapter.fromJson(it)
+
+            if (contactAndLocation != null) {
+                listContactViewModel.addContactAndLocation(contactAndLocation)
+                Toast.makeText(
+                    context,
+                    "Contact ${contactAndLocation?.contact?.firstname} added",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                throw Exception("No contact to add in room database")
+            }
+        } catch (e: Exception) {
+            Toast.makeText(context, "This QR Code is not valid", Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onCreateView(
@@ -36,11 +72,18 @@ class ListContactFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var lca = ListContactAdapter()
-        binding.contactList.adapter = lca
+        // Create adapter and link to the view
+        val adapter = ListContactAdapter()
+        binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
-            lca.data = it
+            Log.e("aloha", "List contact changed ${it.size}")
+            adapter.data = it
         })
+
+        // Read QR Code button
+        binding.scanQrButton.setOnClickListener{
+            startForResult.launch(null)
+        }
     }
 }

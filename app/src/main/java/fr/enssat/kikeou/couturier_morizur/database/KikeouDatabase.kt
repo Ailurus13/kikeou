@@ -52,7 +52,7 @@ abstract class KikeouDatabase: RoomDatabase() {
             }
         }
 
-        suspend fun populateDatabase(contactDao: ContactDAO) {
+        fun populateDatabase(contactDao: ContactDAO) {
             // Function called to populate db during development
         }
     }
