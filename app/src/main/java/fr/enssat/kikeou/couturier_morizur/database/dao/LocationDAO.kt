@@ -9,6 +9,9 @@ interface LocationDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(location: Location): Long
 
+    @Delete
+    suspend fun delete(location: Location)
+
     @Query("SELECT * FROM location JOIN contact ON location.contactId = contact.id WHERE contact.isMainContact = 1")
     fun getMainLocations(): LiveData<List<Location>>
 }

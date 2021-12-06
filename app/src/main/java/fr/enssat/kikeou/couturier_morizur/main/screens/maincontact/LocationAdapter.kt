@@ -1,14 +1,17 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
-class LocationAdapter: RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
+class LocationAdapter(var mainContactViewModel: MainContactViewModel, var context: Context?): RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
     var data =  listOf<Location>()
         set(value) {
             field = value
@@ -24,9 +27,14 @@ class LocationAdapter: RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
+
         holder.locationValue.text = item.value
         holder.locationDay.text = item.day
-        holder.locationWeek.text = item.week.toString()
+
+        holder.deleteLocationButton.setOnClickListener {
+            mainContactViewModel.deleteLocation(item)
+            Toast.makeText(context, "Location deleted", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -36,6 +44,6 @@ class LocationAdapter: RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val locationValue: TextView = itemView.findViewById(R.id.locationValue)
         val locationDay: TextView = itemView.findViewById(R.id.locationDay)
-        val locationWeek: TextView = itemView.findViewById(R.id.locationWeek)
+        val deleteLocationButton: Button = itemView.findViewById(R.id.deleteLocationButton)
     }
 }

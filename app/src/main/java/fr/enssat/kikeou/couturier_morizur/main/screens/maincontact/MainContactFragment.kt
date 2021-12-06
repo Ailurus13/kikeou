@@ -50,7 +50,7 @@ class MainContactFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Location RecyclerView
-        val locationAdapter = LocationAdapter()
+        val locationAdapter = LocationAdapter(mainContactViewModel, context)
         val locationRecyclerView = binding.locationRecyclerView
         locationRecyclerView.adapter = locationAdapter
 

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
 import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
@@ -18,6 +19,12 @@ class MainContactViewModel(private val contactRepository: ContactRepository, pri
     fun createMainContact(id: String, firstname:String, lastname:String) {
         viewModelScope.launch {
             contactRepository.createMainContact(id, firstname, lastname)
+        }
+    }
+
+    fun deleteLocation(location: Location){
+        viewModelScope.launch {
+            locationRepository.deleteLocation(location)
         }
     }
 

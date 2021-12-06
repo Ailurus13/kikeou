@@ -22,11 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/locationWeek"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/deleteLocationButton"
+            android:background="@drawable/ic_trash"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
