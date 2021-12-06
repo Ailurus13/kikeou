@@ -8,7 +8,7 @@ import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
 @Dao
 interface ContactDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(contact: Contact)
 
     @Update
