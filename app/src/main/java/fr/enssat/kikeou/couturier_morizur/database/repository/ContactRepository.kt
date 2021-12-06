@@ -16,10 +16,6 @@ class ContactRepository(private val contactDao: ContactDAO) {
         contactDao.update(contact)
     }
 
-    fun getById(id: String): LiveData<Contact> {
-        return contactDao.getById(id)
-    }
-
     fun getMainContactAndLocation(): LiveData<ContactDAO.ContactAndLocation> {
         return contactDao.getMainContactAndLocation()
     }

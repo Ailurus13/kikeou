@@ -2,7 +2,6 @@ package fr.enssat.kikeou.couturier_morizur.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
 @Dao

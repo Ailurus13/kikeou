@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
