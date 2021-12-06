@@ -13,12 +13,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/locationLinearLayout"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your profil" />
-
         <EditText
             android:id="@+id/firstnameEditText"
             android:layout_width="match_parent"
@@ -27,7 +25,6 @@
             android:hint="@string/firstname"
             android:inputType="text"
             android:maxLines="1"></EditText>
-
         <EditText
             android:id="@+id/lastnameEditText"
             android:layout_width="match_parent"
@@ -35,7 +32,6 @@
             android:hint="@string/lastname"
             android:inputType="text"
             android:maxLines="1"></EditText>
-
         <LinearLayout
             android:visibility="invisible"
             android:id="@+id/updateButtons"
@@ -63,24 +59,30 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profilLinearLayout">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Your locations" />
-
-
         <androidx.recyclerview.widget.RecyclerView
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/locationRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="150dp" />
-
         <Button
             android:id="@+id/buttonAddLocation"
             android:text="Add location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/qrCodeButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_qr_code"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/locationLinearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

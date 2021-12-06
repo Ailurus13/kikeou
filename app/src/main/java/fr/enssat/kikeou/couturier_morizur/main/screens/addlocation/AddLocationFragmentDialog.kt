@@ -1,7 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.addlocation
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
