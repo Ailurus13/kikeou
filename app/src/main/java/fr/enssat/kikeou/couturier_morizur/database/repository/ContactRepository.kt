@@ -28,7 +28,7 @@ class ContactRepository(private val contactDao: ContactDAO) {
     fun getMainContact(): LiveData<Contact> {
         return contactDao.getMainContact()
     }
-    fun getAllContactListInfo(): LiveData<List<ContactDAO.ContactListInfo>> {
-        return contactDao.getAllContactListInfo()
+    fun getAllContactListInfo(week: Int, day: String): LiveData<List<ContactDAO.ContactListInfo>> {
+        return contactDao.getAllContactListInfo(week, day)
     }
 }

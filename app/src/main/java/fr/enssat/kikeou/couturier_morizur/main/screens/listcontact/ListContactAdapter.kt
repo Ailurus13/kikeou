@@ -35,7 +35,7 @@ class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>()
         fun bind(item: ContactDAO.ContactListInfo){
             firstname.text = item.firstname
             lastname.text = item.lastname
-            contactLocation.text = item.location
+            contactLocation.text = null
         }  
 
         companion object{
