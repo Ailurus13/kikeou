@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".welcome.screens.WelcomeFragment">
+    tools:context=".welcome.WelcomeFragment">
 
     <TextView
         android:id="@+id/welcomeText"
@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_kikeou"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/welcomeText"

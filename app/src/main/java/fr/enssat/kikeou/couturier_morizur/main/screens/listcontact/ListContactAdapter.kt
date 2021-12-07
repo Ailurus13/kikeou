@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 
-class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
+class ListContactAdapter(
+    var cellClickListener: CellClickListener
+) : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
     var data = listOf<ContactDAO.ContactListInfo>()
         set(value) {
             field = value
@@ -21,6 +23,10 @@ class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
+
+        holder.itemView.setOnClickListener{
+            this.cellClickListener.onCellClickListener(item)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -45,5 +51,9 @@ class ListContactAdapter : RecyclerView.Adapter<ListContactAdapter.ViewHolder>()
                 return ViewHolder(view)
             }
         }
+    }
+
+    interface CellClickListener {
+        fun onCellClickListener(data: ContactDAO.ContactListInfo)
     }
 }

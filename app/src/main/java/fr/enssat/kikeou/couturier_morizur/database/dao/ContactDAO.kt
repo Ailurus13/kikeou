@@ -15,7 +15,7 @@ interface ContactDAO {
     suspend fun update(contact: Contact)
 
     @Query("SELECT * FROM contact WHERE id =:id")
-    fun getById(id:String): LiveData<Contact>
+    fun getById(id:String): LiveData<ContactAndLocation>
 
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContactAndLocation(): LiveData<ContactAndLocation>
@@ -23,10 +23,10 @@ interface ContactDAO {
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContact(): LiveData<Contact>
 
-    @Query("SELECT contact.firstname, contact.lastname FROM contact JOIN location ON contact.id = location.contactId WHERE location.week = :week AND location.day = :day")
-    fun getAllContactListInfo(week: Int, day: String): LiveData<List<ContactListInfo>>
+    @Query("SELECT contact.id, contact.firstname, contact.lastname FROM contact")
+    fun getAllContactListInfo(): LiveData<List<ContactListInfo>>
 
-    data class ContactListInfo(val firstname: String, val lastname: String)
+    data class ContactListInfo(val id: String, val firstname: String, val lastname: String)
 
     @JsonClass(generateAdapter = true)
     data class ContactAndLocation(
