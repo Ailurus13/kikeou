@@ -3,6 +3,7 @@ package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import fr.enssat.kikeou.couturier_morizur.qrcode.QrCodeActivity
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
+import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 
 
 class MainContactFragment : Fragment() {
@@ -46,6 +48,15 @@ class MainContactFragment : Fragment() {
         return binding.root
     }
 
+    private fun updateLocationData(locationAdapter: LocationAdapter, locations: List<Location>) {
+        // Filter by week
+        // /!\ It would be better to get from database only the needed data
+        // but we could not make it work /!\
+        locationAdapter.data = locations.filter { location ->
+            location.week == mainContactViewModel.selectedWeek.value
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -56,17 +67,39 @@ class MainContactFragment : Fragment() {
 
         // Open add location modal on button click
         binding.buttonAddLocation.setOnClickListener {
-            AddLocationFragmentDialog().show(
+            var addLocationFragment = AddLocationFragmentDialog()
+            val args = Bundle()
+            mainContactViewModel.selectedWeek.value?.let { week -> args.putInt("week", week) }
+            addLocationFragment.arguments = args
+            addLocationFragment.show(
                 childFragmentManager, AddLocationFragmentDialog.TAG
             )
         }
+
+        binding.nextWeek.setOnClickListener{
+            mainContactViewModel.nextWeek()
+        }
+
+        binding.previousWeek.setOnClickListener{
+            mainContactViewModel.previousWeek()
+        }
+
+        // On week change
+        mainContactViewModel.selectedWeek.observe(viewLifecycleOwner, {
+            binding.weekText.text = "Week $it"
+            // Update locations
+            mainContactViewModel.mainContact.value?.let { mainContact ->
+                updateLocationData(locationAdapter, mainContact.locations)
+            }
+        })
 
         // On contact details update
         mainContactViewModel.mainContact.observe(viewLifecycleOwner, {
             it?.let {
                 binding.firstnameEditText.setText(it.contact.firstname)
                 binding.lastnameEditText.setText(it.contact.lastname)
-                locationAdapter.data = it.locations
+                // Update locations
+                updateLocationData(locationAdapter, it.locations)
             } ?: run {
                 mainContactViewModel.startWelcomeActivity()
             }
