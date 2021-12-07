@@ -10,11 +10,28 @@ import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
 
 class MainContactViewModel(private val contactRepository: ContactRepository, private val locationRepository: LocationRepository): ViewModel() {
+    val selectedWeek = MutableLiveData<Int>(1)
     val mainContact = contactRepository.getMainContactAndLocation()
 
     val welcomeActivity: LiveData<Boolean>
         get() = _welcomeActivity
     private val _welcomeActivity = MutableLiveData<Boolean>(false)
+
+    fun nextWeek() {
+        if(selectedWeek.value == 53){
+            selectedWeek.value = 1
+        } else {
+            selectedWeek.value = selectedWeek.value?.plus(1)
+        }
+    }
+
+    fun previousWeek() {
+        if(selectedWeek.value == 1){
+            selectedWeek.value = 53
+        } else {
+            selectedWeek.value = selectedWeek.value?.minus(1)
+        }
+    }
 
     fun createMainContact(id: String, firstname:String, lastname:String) {
         viewModelScope.launch {

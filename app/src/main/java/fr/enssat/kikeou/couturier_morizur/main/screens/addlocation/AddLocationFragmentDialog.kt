@@ -34,11 +34,15 @@ class AddLocationFragmentDialog : DialogFragment() {
         // Set size of dialog
         val width = (resources.displayMetrics.widthPixels * 0.90).toInt()
         val height = (resources.displayMetrics.heightPixels * 0.90).toInt()
+        var week = arguments?.getInt("week")
         dialog?.window?.setLayout(width, height)
 
-        // Init fields
-        binding.weekNumberPicker.minValue = 1;
-        binding.weekNumberPicker.maxValue = 53;
+        if(week == null) {
+            // Init fields
+            binding.weekNumberPicker.minValue = 1
+            binding.weekNumberPicker.maxValue = 53
+            binding.weekNumberPicker.visibility = View.VISIBLE
+        }
 
         activity?.let {
             ArrayAdapter.createFromResource(it,
@@ -50,15 +54,22 @@ class AddLocationFragmentDialog : DialogFragment() {
         };
 
         addLocationViewModel.mainContact.observe(viewLifecycleOwner, {
-            binding.addLocationTitle.text = "Add location to " + it.firstname
+            if(week != null) {
+                binding.addLocationTitle.text = "Add location to ${it.firstname} for week ${week.toString()}"
+            } else {
+                binding.addLocationTitle.text = "Add location to ${it.firstname}"
+            }
         })
 
         // On click to add location
         binding.buttonAddLocation.setOnClickListener{
             var day = binding.daySpinner.selectedItem.toString()
-            var week = binding.weekNumberPicker.value
             var value = binding.description.text.toString()
-            addLocationViewModel.addLocation(day, week, value)
+            if(week != null) {
+                addLocationViewModel.addLocation(day, week, value)
+            } else {
+                addLocationViewModel.addLocation(day, binding.weekNumberPicker.value, value)
+            }
             // Close dialog
             dismiss()
         }

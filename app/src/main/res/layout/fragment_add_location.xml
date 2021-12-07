@@ -25,6 +25,7 @@
         app:layout_constraintBottom_toTopOf="@id/buttonAddLocation"
         >
         <NumberPicker
+            android:visibility="gone"
             android:id="@+id/weekNumberPicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
