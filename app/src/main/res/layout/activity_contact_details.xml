@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:id="@+id/detailsLinearLayout"
-        app:layout_constraintBottom_toTopOf="@id/detailsLocationRecyclerView"
+        app:layout_constraintBottom_toTopOf="@id/linearLayoutLocations"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -25,11 +25,48 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    <LinearLayout
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailsLinearLayout"
-        android:id="@+id/detailsLocationRecyclerView"
+        android:orientation="vertical"
+        android:id="@+id/linearLayoutLocations"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/previous_week"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_previous"
+                android:text="previous" />
+
+            <TextView
+                android:id="@+id/weekText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:text="Week" />
+
+            <Button
+                android:id="@+id/next_week"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_next"
+                android:text="next" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailsLocationRecyclerView"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
