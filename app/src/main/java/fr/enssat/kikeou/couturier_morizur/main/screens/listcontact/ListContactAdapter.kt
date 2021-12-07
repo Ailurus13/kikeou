@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.content.Context
 import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 
-class ListContactAdapter(var cellClickListener: CellClickListener) : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
+class ListContactAdapter(var context : Context, var cellClickListener: CellClickListener) : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
     var data = listOf<ContactDAO.ContactListInfo>()
         set(value) {
             field = value
@@ -29,10 +30,10 @@ class ListContactAdapter(var cellClickListener: CellClickListener) : RecyclerVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(context, parent)
     }
 
-    class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView){
+    class ViewHolder private constructor(var context: Context, itemView: View): RecyclerView.ViewHolder(itemView){
         val firstname: TextView = itemView.findViewById(R.id.contact_firstname)
         val lastname: TextView = itemView.findViewById(R.id.contact_lastname)
         val contactLocation: Button = itemView.findViewById(R.id.contact_location)
@@ -40,14 +41,18 @@ class ListContactAdapter(var cellClickListener: CellClickListener) : RecyclerVie
         fun bind(item: ContactDAO.ContactListInfo){
             firstname.text = item.firstname
             lastname.text = item.lastname
-            contactLocation.text = item.locationValue
+            if(item.locationValue != null){
+                contactLocation.text = item.locationValue
+            }else {
+                contactLocation.text = context.getString(R.string.no_location)
+            }
         }  
 
         companion object{
-            fun from(parent: ViewGroup): ViewHolder {
+            fun from(context: Context, parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val view = layoutInflater.inflate(R.layout.list_item_contact, parent, false)
-                return ViewHolder(view)
+                return ViewHolder(context, view)
             }
         }
     }
