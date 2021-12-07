@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
+import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 import fr.enssat.kikeou.couturier_morizur.databinding.ActivityContactDetailsBinding
 import fr.enssat.kikeou.couturier_morizur.main.screens.maincontact.ReadOnlyLocationAdapter
@@ -47,7 +48,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         }
 
         contactDetailsViewModel.selectedWeek.observe(this, {
-            binding.weekText.text = "Week $it"
+            binding.weekText.text = getString(R.string.week_number, it)
             contactDetailsViewModel.contact.value?.let { contact -> updateLocationData(adapter, contact.locations) }
         })
 

@@ -41,9 +41,8 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
 
             if (contactAndLocation != null) {
                 listContactViewModel.addContactAndLocation(contactAndLocation)
-                Toast.makeText(
-                    context,
-                    "Contact ${contactAndLocation?.contact?.firstname} added",
+                Toast.makeText(context,
+                    getString(R.string.toast_add_contact_and_location, contactAndLocation.contact.firstname),
                     Toast.LENGTH_LONG
                 ).show()
             } else {

@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_contact_card">20dp</dimen>
-    <dimen name="margin_text_cards">10dp</dimen>
-    <dimen name="margin_location_cards">5dp</dimen>
-    <dimen name="padding_contact_content">16dp</dimen>
+    <dimen name="zero_size">0dp</dimen>
+    <dimen name="margin_elements">10dp</dimen>
     <dimen name="text_size_contact">25sp</dimen>
     <dimen name="text_size_location">10sp</dimen>
+    <dimen name="text_margin">10dp</dimen>
+    <dimen name="button_layout_height">40dp</dimen>
+    <dimen name="button_margin">10dp</dimen>
+    <dimen name="button_float_margin">35dp</dimen>
+    <dimen name="button_next_previous_layout">30dp</dimen>
+    <dimen name="button_delete">30dp</dimen>
+    <dimen name="button_location_margin">5dp</dimen>
+    <dimen name="size_mini_qr_code">70dp</dimen>
+    <dimen name="height_big_qr_code">300dp</dimen>
     <dimen name="corner_radius_cards">4dp</dimen>
 </resources>
