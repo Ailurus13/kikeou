@@ -63,7 +63,7 @@ class AddLocationFragmentDialog : DialogFragment() {
 
         // On click to add location
         binding.buttonAddLocation.setOnClickListener{
-            var day = binding.daySpinner.selectedItem.toString()
+            var day = binding.daySpinner.selectedItemPosition + 1
             var value = binding.description.text.toString()
             if(week != null) {
                 addLocationViewModel.addLocation(day, week, value)

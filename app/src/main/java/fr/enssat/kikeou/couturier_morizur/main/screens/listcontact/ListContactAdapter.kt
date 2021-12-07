@@ -1,16 +1,16 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 
-class ListContactAdapter(
-    var cellClickListener: CellClickListener
-) : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
+class ListContactAdapter(var cellClickListener: CellClickListener) : RecyclerView.Adapter<ListContactAdapter.ViewHolder>() {
     var data = listOf<ContactDAO.ContactListInfo>()
         set(value) {
             field = value
@@ -34,15 +34,19 @@ class ListContactAdapter(
 
     class ViewHolder private constructor(itemView: View): RecyclerView.ViewHolder(itemView){
         val firstname: TextView = itemView.findViewById(R.id.contact_firstname)
+        val lastname: TextView = itemView.findViewById(R.id.contact_lastname)
+        val contactLocation: Button = itemView.findViewById(R.id.contact_location)
 
         fun bind(item: ContactDAO.ContactListInfo){
             firstname.text = item.firstname
-        }
+            lastname.text = item.lastname
+            contactLocation.text = item.locationValue
+        }  
 
         companion object{
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.contact_list_item, parent, false)
+                val view = layoutInflater.inflate(R.layout.list_item_contact, parent, false)
                 return ViewHolder(view)
             }
         }

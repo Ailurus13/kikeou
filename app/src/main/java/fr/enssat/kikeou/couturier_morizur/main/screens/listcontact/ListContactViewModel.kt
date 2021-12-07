@@ -1,14 +1,27 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.icu.util.ULocale
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
 import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
+import java.time.LocalDateTime
+import java.util.*
 
 class ListContactViewModel(var contactRepository: ContactRepository, var locationRepository: LocationRepository): ViewModel() {
-    val listContact = contactRepository.getAllContactListInfo()
+    var calendar = Calendar.getInstance(Locale.FRANCE)
+    val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
+    val dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1
+    val listContact = contactRepository.getAllContactListInfo(weekNumber, dayNumber)
+
+    init {
+        Log.e("aloha", "Week number: $weekNumber")
+        Log.e("aloha", "Day number: $dayNumber")
+    }
+
 
     fun addContactAndLocation(contactAndLocation: ContactDAO.ContactAndLocation) {
         // Sync locations with contactAndLocation object

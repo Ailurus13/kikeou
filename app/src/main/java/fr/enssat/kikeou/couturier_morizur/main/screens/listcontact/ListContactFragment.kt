@@ -3,16 +3,19 @@ package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.Fragment
+import android.widget.TextView
 import androidx.fragment.app.viewModels
+import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
+import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.ContactDetailsActivity
@@ -68,6 +71,7 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
+            Log.e("aloha", "Location: ${it}")
             adapter.data = it
         })
 

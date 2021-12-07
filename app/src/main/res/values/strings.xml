@@ -4,6 +4,7 @@
     <string name="lastname">Nom</string>
     <string name="welcome">Bienvenue sur Kikéou</string>
     <string name="start">Commencer</string>
+    <string name="contact_list">Liste de vos contacts</string>
 
     <string-array name="days">
         <item>Lundi</item>

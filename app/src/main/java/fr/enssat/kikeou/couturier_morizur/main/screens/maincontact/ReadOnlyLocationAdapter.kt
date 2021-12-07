@@ -28,7 +28,7 @@ open class ReadOnlyLocationAdapter(open var context: Context?): RecyclerView.Ada
         val item = data[position]
 
         holder.locationValue.text = item.value
-        holder.locationDay.text = item.day
+        holder.locationDay.text = item.day.toString()
 
         // Read only so it means button delete is not there
         holder.deleteLocationButton.visibility = View.INVISIBLE
