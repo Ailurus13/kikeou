@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,8 @@ class ListContactAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item)
+
+        Log.e("aloha", item.locationValue)
 
         holder.itemView.setOnClickListener{
             this.cellClickListener.onCellClickListener(item)
