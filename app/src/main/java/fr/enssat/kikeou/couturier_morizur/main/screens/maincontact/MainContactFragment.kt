@@ -25,7 +25,7 @@ class MainContactFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val mainContactViewModel: MainContactViewModel by viewModels {
-        KikeouViewModelFactory(activity?.application as KikeouApplication)
+        KikeouViewModelFactory(activity?.application as KikeouApplication, null)
     }
 
     private val startForResult = registerForActivityResult(WelcomeActivityContract()) {

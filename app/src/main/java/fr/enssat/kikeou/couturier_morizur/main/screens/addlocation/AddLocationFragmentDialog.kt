@@ -17,7 +17,7 @@ class AddLocationFragmentDialog : DialogFragment() {
     private val binding get() = _binding!!
 
     private val addLocationViewModel: AddLocationViewModel by viewModels {
-        KikeouViewModelFactory((activity?.application as KikeouApplication))
+        KikeouViewModelFactory((activity?.application as KikeouApplication), null)
     }
 
     override fun onCreateView(

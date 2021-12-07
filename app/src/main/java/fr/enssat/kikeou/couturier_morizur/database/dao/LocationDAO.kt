@@ -14,4 +14,7 @@ interface LocationDAO {
 
     @Query("SELECT * FROM location JOIN contact ON location.contactId = contact.id WHERE contact.isMainContact = 1")
     fun getMainLocations(): LiveData<List<Location>>
+
+    @Query("SELECT * FROM location JOIN contact ON location.contactId = contact.id WHERE contact.id = :userId")
+    suspend fun getLocationsByContact(userId: String): List<Location>
 }
