@@ -2,8 +2,6 @@ package fr.enssat.kikeou.couturier_morizur.main.screens.maincontact
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +17,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.database.entity.Location
+import java.util.*
 
 
 class MainContactFragment : Fragment() {
@@ -33,7 +32,7 @@ class MainContactFragment : Fragment() {
     private val startForResult = registerForActivityResult(WelcomeActivityContract()) {
         mainContactViewModel.resetStartWelcomeActivity()
         it?.let {
-            val androidId = Settings.Secure.getString(context?.contentResolver, Settings.Secure.ANDROID_ID)
+            val androidId = UUID.randomUUID().toString()
             mainContactViewModel.createMainContact(androidId, it.firstname, it.lastname)
         } ?: run {
             mainContactViewModel.startWelcomeActivity()
