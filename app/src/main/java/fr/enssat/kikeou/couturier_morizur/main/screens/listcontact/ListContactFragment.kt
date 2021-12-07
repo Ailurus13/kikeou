@@ -11,9 +11,12 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
 import fr.enssat.kikeou.couturier_morizur.KikeouViewModelFactory
 import fr.enssat.kikeou.couturier_morizur.R
+import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.ContactDetailsActivity
 import fr.enssat.kikeou.couturier_morizur.qrcode.QrCodeActivity
@@ -68,10 +71,6 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
-<<<<<<< HEAD
-            Log.e("aloha", "List contact changed ${it}")
-=======
->>>>>>> master
             adapter.data = it
         })
 

@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 class AddLocationViewModel(private val locationRepository: LocationRepository, private val contactRepository: ContactRepository): ViewModel() {
     var mainContact = contactRepository.getMainContact();
 
-    fun addLocation(day: String, week: Int, value: String) {
+    fun addLocation(day: Int, week: Int, value: String) {
         viewModelScope.launch {
             mainContact.value?.let {
                 locationRepository.createLocation(day, week, value, it.id)

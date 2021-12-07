@@ -29,7 +29,7 @@ class ContactRepository(private val contactDao: ContactDAO) {
         return contactDao.getMainContact()
     }
     fun getAllContactListInfo(week: Int, day: String): LiveData<List<ContactDAO.ContactListInfo>> {
-        return contactDao.getAllContactListInfo(week, day)
+        return contactDao.getAllContactListInfo()
     }
 
     fun getById(userId: String): LiveData<ContactDAO.ContactAndLocation> {
