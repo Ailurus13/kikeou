@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.icu.util.ULocale
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,10 +12,14 @@ import java.time.LocalDateTime
 import java.util.*
 
 class ListContactViewModel(var contactRepository: ContactRepository, var locationRepository: LocationRepository): ViewModel() {
-    var date = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
-    val listContact = contactRepository.getAllContactListInfo(week = 1, day = "Lundi")
+    var calendar = Calendar.getInstance(Locale.FRANCE)
+    val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
+    val dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1
+    val listContact = contactRepository.getAllContactListInfo(weekNumber, dayNumber)
+
     init {
-        Log.e("aloha", "Date: $date")
+        Log.e("aloha", "Week number: $weekNumber")
+        Log.e("aloha", "Day number: $dayNumber")
     }
 
 

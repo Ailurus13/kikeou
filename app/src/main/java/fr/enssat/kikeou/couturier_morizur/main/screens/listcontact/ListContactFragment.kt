@@ -71,6 +71,7 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
+            Log.e("aloha", "Location: ${it}")
             adapter.data = it
         })
 
