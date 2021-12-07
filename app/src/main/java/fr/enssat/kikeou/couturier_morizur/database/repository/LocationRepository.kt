@@ -8,7 +8,7 @@ class LocationRepository(private val locationDAO: LocationDAO) {
         return locationDAO.getLocationsByContact(contactId)
     }
 
-    suspend fun createLocation(day: String, week: Int, value:String, contactId: String) {
+    suspend fun createLocation(day: Int, week: Int, value:String, contactId: String) {
         var location = Location(day, week, value, contactId)
         locationDAO.create(location)
     }

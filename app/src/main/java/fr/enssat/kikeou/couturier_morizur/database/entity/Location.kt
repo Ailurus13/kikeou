@@ -12,7 +12,7 @@ import com.squareup.moshi.JsonClass
     Index("contactId")
 ])
 data class Location(
-    var day: String,
+    var day: Int,
     var week: Int,
     var value: String,
     var contactId: String
