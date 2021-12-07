@@ -34,6 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_text_cards"
                     android:textSize="@dimen/text_size_contact"
+                    android:textAllCaps="true"
                     card_view:layout_constraintTop_toTopOf="parent"
                     card_view:layout_constraintBottom_toBottomOf="parent"
                     card_view:layout_constraintStart_toEndOf="@+id/contact_firstname" />

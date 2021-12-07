@@ -5,6 +5,7 @@
     <string name="welcome">Bienvenue sur Kikéou</string>
     <string name="start">Commencer</string>
     <string name="contact_list">Liste de vos contacts</string>
+    <string name="no_location">Inconnue</string>
 
     <string-array name="days">
         <item>Lundi</item>

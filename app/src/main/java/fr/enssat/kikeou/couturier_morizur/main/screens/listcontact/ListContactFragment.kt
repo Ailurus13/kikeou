@@ -67,12 +67,12 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         // Create adapter and link to the view
-        val adapter = ListContactAdapter(this)
+        val adapter = context?.let { ListContactAdapter(it, this) }
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
             Log.e("aloha", "Location: ${it}")
-            adapter.data = it
+            adapter?.data = it
         })
 
         // Read QR Code button
