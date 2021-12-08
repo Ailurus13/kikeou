@@ -55,9 +55,9 @@ class AddLocationFragmentDialog : DialogFragment() {
 
         addLocationViewModel.mainContact.observe(viewLifecycleOwner, {
             if(week != null) {
-                binding.addLocationTitle.text = "Add location to ${it.firstname} for week ${week.toString()}"
+                binding.addLocationTitle.text = getString(R.string.add_location_week, it.firstname, week)
             } else {
-                binding.addLocationTitle.text = "Add location to ${it.firstname}"
+                binding.addLocationTitle.text = getString(R.string.add_location_contact, it.firstname)
             }
         })
 

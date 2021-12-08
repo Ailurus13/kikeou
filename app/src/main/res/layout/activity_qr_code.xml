@@ -16,16 +16,16 @@
     app:layout_constraintTop_toTopOf="parent">
     <TextView
         android:gravity="center"
-        android:text="Here is your QR Code, you can use it to share your locations to others"
+        android:text="@string/qr_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <ImageView
         android:id="@+id/qrCodeImageView"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="@dimen/height_big_qr_code" />
     <TextView
         android:id="@+id/title"
-        android:textSize="20dp"
+        android:textSize="@dimen/text_size_contact"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

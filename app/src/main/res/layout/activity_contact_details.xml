@@ -36,15 +36,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_width="380dp"
+            android:layout_margin="@dimen/margin_elements"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/previous_week"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/button_next_previous_layout"
+                android:layout_height="@dimen/button_next_previous_layout"
                 android:background="@drawable/ic_previous"
-                android:text="previous" />
+                android:text="@string/previous" />
 
             <TextView
                 android:id="@+id/weekText"
@@ -52,21 +53,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:text="Week" />
+                android:text="@string/week" />
 
             <Button
                 android:id="@+id/next_week"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/button_next_previous_layout"
+                android:layout_height="@dimen/button_next_previous_layout"
                 android:background="@drawable/ic_next"
-                android:text="next" />
+                android:text="@string/next" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detailsLocationRecyclerView"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
-
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_elements"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

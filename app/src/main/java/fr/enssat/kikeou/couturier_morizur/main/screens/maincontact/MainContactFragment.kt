@@ -85,7 +85,7 @@ class MainContactFragment : Fragment() {
 
         // On week change
         mainContactViewModel.selectedWeek.observe(viewLifecycleOwner, {
-            binding.weekText.text = "Week $it"
+            binding.weekText.text = getString(R.string.week_number, it)
             // Update locations
             mainContactViewModel.mainContact.value?.let { mainContact ->
                 updateLocationData(locationAdapter, mainContact.locations)

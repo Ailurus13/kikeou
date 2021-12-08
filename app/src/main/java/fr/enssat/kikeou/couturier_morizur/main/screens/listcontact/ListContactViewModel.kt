@@ -12,9 +12,9 @@ import java.time.LocalDateTime
 import java.util.*
 
 class ListContactViewModel(var contactRepository: ContactRepository, var locationRepository: LocationRepository): ViewModel() {
-    var calendar = Calendar.getInstance(Locale.FRANCE)
-    val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
-    val dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1
+    private var calendar: Calendar = Calendar.getInstance(Locale.FRANCE)
+    private val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
+    private val dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1
     val listContact = contactRepository.getAllContactListInfo(weekNumber, dayNumber)
 
     init {

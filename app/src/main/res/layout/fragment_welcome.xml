@@ -36,7 +36,7 @@
             android:id="@+id/firstnameEditText"
             android:maxLines="1"
             android:inputType="text"
-            android:layout_marginBottom="20dp"
+            android:layout_margin="@dimen/margin_elements"
             android:hint="@string/firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -46,6 +46,7 @@
             android:id="@+id/lastnameEditText"
             android:maxLines="1"
             android:inputType="text"
+            android:layout_margin="@dimen/margin_elements"
             android:hint="@string/lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -57,9 +58,8 @@
         android:text="@string/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="40dp"
+        android:layout_margin="@dimen/button_margin"
         app:layout_constraintTop_toBottomOf="@id/fieldsLinearLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ class LocationAdapter(var mainContactViewModel: MainContactViewModel, override v
 
         holder.deleteLocationButton.setOnClickListener {
             mainContactViewModel.deleteLocation(item)
-            Toast.makeText(context, "Location deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context?.getString(R.string.toast_delete_location), Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -25,9 +25,8 @@
         <Button
             android:id="@+id/deleteLocationButton"
             android:background="@drawable/ic_trash"
-            android:layout_width="30dp"
-            android:layout_height="30dp" />
+            android:layout_width="@dimen/button_delete"
+            android:layout_height="@dimen/button_delete" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
