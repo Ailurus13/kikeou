@@ -13,6 +13,7 @@
     <string name="week_number">Semaine %d</string>
     <string name="next">Suivant</string>
     <string name="previous">Précédent</string>
+    <string name="qr_code_no_valid">QR Code invalide</string>
     <string name="qr_code">Votre QR Code, vous pouvez utiliser pour partager votre localisation</string>
     <string name="qr_code_scan_text">Scan le QR Code de ton collègue pour savoir où il est!</string>
     <string name="add_location">Ajouter une localisation</string>
@@ -21,7 +22,7 @@
     <string name="week">Semaine</string>
     <string name="save">Sauvegarder</string>
     <string name="cancel">Annuler</string>
-
+    <string name="firstname_lastname">%s %s</string>
     <string-array name="days">
         <item>Lundi</item>
         <item>Mardi</item>

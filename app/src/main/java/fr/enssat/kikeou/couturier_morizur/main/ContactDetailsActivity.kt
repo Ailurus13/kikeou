@@ -53,8 +53,7 @@ class ContactDetailsActivity : AppCompatActivity() {
         })
 
         contactDetailsViewModel.contact.observe(this, {
-            binding.contactDetailsFirstname.text = it.contact.firstname
-            binding.contactDetailsLastname.text = it.contact.lastname
+            binding.contactDetailsFirstnameLastname.text = getString(R.string.firstname_lastname, it.contact.firstname, it.contact.lastname)
             updateLocationData(adapter, it.locations)
         })
     }

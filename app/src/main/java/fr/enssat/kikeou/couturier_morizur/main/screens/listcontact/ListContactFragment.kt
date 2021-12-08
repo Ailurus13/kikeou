@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.couturier_morizur.KikeouApplication
@@ -19,7 +17,6 @@ import fr.enssat.kikeou.couturier_morizur.R
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.databinding.FragmentListContactBinding
 import fr.enssat.kikeou.couturier_morizur.main.ContactDetailsActivity
-import fr.enssat.kikeou.couturier_morizur.qrcode.QrCodeActivity
 import fr.enssat.kikeou.couturier_morizur.qrcode.ReadQrCodeContract
 
 class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
@@ -50,7 +47,7 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
             }
         } catch (e: Exception) {
             Log.e("kikeou-error", e.stackTraceToString());
-            Toast.makeText(context, "This QR Code is not valid", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.qr_code_no_valid), Toast.LENGTH_LONG).show()
         }
     }
 
