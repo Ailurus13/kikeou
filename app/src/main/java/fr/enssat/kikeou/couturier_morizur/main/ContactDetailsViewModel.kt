@@ -3,13 +3,14 @@ package fr.enssat.kikeou.couturier_morizur.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
-import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
+import java.util.*
 
 class ContactDetailsViewModel(
     userId: String,
-    contactRepository: ContactRepository,
-    private val locationRepository: LocationRepository): ViewModel() {
-        val selectedWeek = MutableLiveData<Int>(1)
+    contactRepository: ContactRepository): ViewModel() {
+        private var calendar: Calendar = Calendar.getInstance(Locale.FRANCE)
+        private val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
+        val selectedWeek = MutableLiveData<Int>(weekNumber)
         var contact = contactRepository.getById(userId)
 
     fun nextWeek() {

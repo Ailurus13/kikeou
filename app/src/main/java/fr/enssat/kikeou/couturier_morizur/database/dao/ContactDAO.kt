@@ -23,8 +23,11 @@ interface ContactDAO {
     @Query("SELECT * FROM contact WHERE isMainContact = 1")
     fun getMainContact(): LiveData<Contact>
 
-    @Query("SELECT contact.id, contact.firstname, contact.lastname, (SELECT location.value FROM location WHERE location.contactId =  contact.id AND location.week = :week AND location.day = :day) as locationValue  FROM contact")
+    @Query("SELECT contact.id, contact.firstname, contact.lastname, (SELECT location.value FROM location WHERE location.contactId =  contact.id AND location.week = :week AND location.day = :day) as locationValue  FROM contact WHERE isMainContact = 0")
     fun getAllContactListInfo(week: Int, day: Int): LiveData<List<ContactListInfo>>
+
+    @Query("DELETE FROM contact WHERE contact.id = :id")
+    suspend fun delete(id: String)
 
     data class ContactListInfo(
         val id: String,

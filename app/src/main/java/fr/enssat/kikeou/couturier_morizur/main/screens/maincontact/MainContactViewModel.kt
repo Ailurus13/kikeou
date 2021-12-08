@@ -8,9 +8,12 @@ import fr.enssat.kikeou.couturier_morizur.database.entity.Location
 import fr.enssat.kikeou.couturier_morizur.database.repository.ContactRepository
 import fr.enssat.kikeou.couturier_morizur.database.repository.LocationRepository
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainContactViewModel(private val contactRepository: ContactRepository, private val locationRepository: LocationRepository): ViewModel() {
-    val selectedWeek = MutableLiveData<Int>(1)
+    private var calendar: Calendar = Calendar.getInstance(Locale.FRANCE)
+    private val weekNumber = calendar.get(Calendar.WEEK_OF_YEAR)
+    val selectedWeek = MutableLiveData<Int>(weekNumber)
     val mainContact = contactRepository.getMainContactAndLocation()
 
     val welcomeActivity: LiveData<Boolean>

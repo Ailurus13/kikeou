@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -67,7 +68,6 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         binding.contactList.adapter = adapter
 
         listContactViewModel.listContact.observe(viewLifecycleOwner, {
-            Log.e("aloha", "Location: ${it}")
             adapter?.data = it
         })
 
@@ -81,5 +81,16 @@ class ListContactFragment : Fragment(), ListContactAdapter.CellClickListener {
         val intent = Intent(context, ContactDetailsActivity::class.java)
         intent.putExtra("userId", data.id)
         startActivity(intent)
+    }
+
+    override fun onCellLongClickListener(data: ContactDAO.ContactListInfo) {
+        AlertDialog.Builder(context)
+            .setTitle("Attention")
+            .setMessage("Voulez-vous supprimer ce contact ?")
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setPositiveButton("Oui") { _, _ ->
+                listContactViewModel.deleteContact(data.id)
+            }
+            .setNegativeButton("Non", null).show()
     }
 }

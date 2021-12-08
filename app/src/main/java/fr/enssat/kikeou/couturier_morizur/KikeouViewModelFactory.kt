@@ -21,7 +21,7 @@ class KikeouViewModelFactory(
             return ListContactViewModel(app.contactRepository, app.locationRepository) as T
         }
         if(modelClass.isAssignableFrom(ContactDetailsViewModel::class.java)) {
-            return arg?.let { ContactDetailsViewModel(it, app.contactRepository, app.locationRepository) } as T
+            return arg?.let { ContactDetailsViewModel(it, app.contactRepository) } as T
         }
         throw IllegalArgumentException("Unknown ViewModel class or arg error")
     }

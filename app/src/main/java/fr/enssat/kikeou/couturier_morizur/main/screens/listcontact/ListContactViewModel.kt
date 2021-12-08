@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.main.screens.listcontact
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
@@ -15,9 +14,10 @@ class ListContactViewModel(var contactRepository: ContactRepository, var locatio
     private val dayNumber = calendar.get(Calendar.DAY_OF_WEEK) - 1
     val listContact = contactRepository.getAllContactListInfo(weekNumber, dayNumber)
 
-    init {
-        Log.e("aloha", "Week number: $weekNumber")
-        Log.e("aloha", "Day number: $dayNumber")
+    fun deleteContact(id: String) {
+        viewModelScope.launch {
+            contactRepository.deleteContact(id)
+        }
     }
 
     fun addContactAndLocation(contactAndLocation: ContactDAO.ContactAndLocation) {

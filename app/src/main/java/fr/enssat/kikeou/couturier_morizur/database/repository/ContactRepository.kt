@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.couturier_morizur.database.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import fr.enssat.kikeou.couturier_morizur.database.dao.ContactDAO
 import fr.enssat.kikeou.couturier_morizur.database.entity.Contact
@@ -30,11 +29,14 @@ class ContactRepository(private val contactDao: ContactDAO) {
         return contactDao.getMainContact()
     }
     fun getAllContactListInfo(week: Int, day: Int): LiveData<List<ContactDAO.ContactListInfo>> {
-        Log.e("aloha", "Week: $week et Day: $day")
         return contactDao.getAllContactListInfo(week, day)
     }
 
     fun getById(userId: String): LiveData<ContactDAO.ContactAndLocation> {
         return contactDao.getById(userId)
+    }
+
+    suspend fun deleteContact(id: String) {
+        contactDao.delete(id)
     }
 }

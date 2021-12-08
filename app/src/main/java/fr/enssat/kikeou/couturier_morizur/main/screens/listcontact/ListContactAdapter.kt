@@ -23,8 +23,13 @@ class ListContactAdapter(var context : Context, var cellClickListener: CellClick
         val item = data[position]
         holder.bind(item)
 
-        holder.itemView.setOnClickListener{
-            this.cellClickListener.onCellClickListener(item)
+        holder.itemView.setOnLongClickListener {
+            cellClickListener.onCellLongClickListener(item)
+            true
+        }
+
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(item)
         }
     }
 
@@ -35,7 +40,7 @@ class ListContactAdapter(var context : Context, var cellClickListener: CellClick
     class ViewHolder private constructor(var context: Context, itemView: View): RecyclerView.ViewHolder(itemView){
         val firstname: TextView = itemView.findViewById(R.id.contact_firstname)
         val lastname: TextView = itemView.findViewById(R.id.contact_lastname)
-        val contactLocation: Button = itemView.findViewById(R.id.contact_location)
+        private val contactLocation: Button = itemView.findViewById(R.id.contact_location)
 
         fun bind(item: ContactDAO.ContactListInfo){
             firstname.text = item.firstname
@@ -58,5 +63,6 @@ class ListContactAdapter(var context : Context, var cellClickListener: CellClick
 
     interface CellClickListener {
         fun onCellClickListener(data: ContactDAO.ContactListInfo)
+        fun onCellLongClickListener(data: ContactDAO.ContactListInfo)
     }
 }
