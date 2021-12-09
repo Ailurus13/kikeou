@@ -16,7 +16,7 @@ class QrCodeActivity : AppCompatActivity() {
 
         // Set QR Code bitmap
         val data = intent.getStringExtra("data")
-        val bitmap = QRCode.from(data).withSize(500,500).bitmap()
+        val bitmap = QRCode.from(data).withSize(500,500).withCharset("UTF-8").bitmap()
         binding.qrCodeImageView.setImageBitmap(bitmap)
 
         // Set title

@@ -64,7 +64,7 @@ class ReadQrCodeActivity : AppCompatActivity() {
     private fun startCamera() = binding.cameraPreview.post {
         val barcodeScanner: BarcodeScanner = BarcodeScanning.getClient(
             BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS)
+                .setBarcodeFormats(Barcode.FORMAT_QR_CODE)
                 .build()
         )
 
@@ -94,7 +94,7 @@ class ReadQrCodeActivity : AppCompatActivity() {
                         }.addOnSuccessListener { barcodes ->
                             var rawValue = ""
                             for (it in barcodes) {
-                                if (rawValue != it.rawValue) {
+                                if (it.rawValue != null && rawValue != it.rawValue) {
                                     rawValue = it.rawValue
                                     var data = Intent()
                                     data.putExtra("jsonData", it.rawValue)
@@ -112,7 +112,7 @@ class ReadQrCodeActivity : AppCompatActivity() {
 
             // Apply declared configs to CameraX using the same lifecycle owner
             cameraProvider.unbindAll()
-            val camera = cameraProvider.bindToLifecycle(
+            cameraProvider.bindToLifecycle(
                 this as LifecycleOwner, cameraSelector, preview, imageAnalysis)
 
             // Use the camera object to link our preview use case with the view
